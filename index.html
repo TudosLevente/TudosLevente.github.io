@@ -1,0 +1,976 @@
+<!doctype html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Levi | Junior Backend Developer</title>
+  <meta name="description"
+    content="Levi fejlesztői portfóliója: junior backend development, C#, Java, Python, Node.js, adatbázisok és webes projektek." />
+  <style>
+    :root {
+      --bg: #070a10;
+      --bg-soft: #0d1320;
+      --card: rgba(14, 21, 35, 0.86);
+      --text: #eef4ff;
+      --muted: #9aabc4;
+      --line: rgba(148, 163, 184, 0.18);
+      --blue: #60a5fa;
+      --cyan: #67e8f9;
+      --red: #fb7185;
+      --green: #86efac;
+      --yellow: #fde68a;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 16% 0%, rgba(96, 165, 250, 0.21), transparent 34rem),
+        radial-gradient(circle at 86% 8%, rgba(251, 113, 133, 0.16), transparent 28rem),
+        radial-gradient(circle at 50% 50%, rgba(103, 232, 249, 0.07), transparent 35rem),
+        linear-gradient(180deg, #070a10 0%, #0a1020 48%, #070a10 100%);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1140px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 10, 16, 0.74);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 850;
+      letter-spacing: -0.04em;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--blue), var(--red));
+      color: #06101d;
+      box-shadow: 0 0 30px rgba(96, 165, 250, 0.28);
+      font-family: "SFMono-Regular", Consolas, monospace;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .lang-toggle {
+      height: 38px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(96, 165, 250, 0.32);
+      background: rgba(96, 165, 250, 0.08);
+      color: var(--text);
+      font-weight: 800;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+    }
+
+    .lang-toggle:hover {
+      background: rgba(96, 165, 250, 0.14);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font-weight: 750;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(96, 165, 250, 0.55);
+      background: rgba(96, 165, 250, 0.08);
+    }
+
+    .btn.primary {
+      color: #06101d;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      border: 0;
+    }
+
+    .hero {
+      padding: 92px 0 70px;
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.04);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .pulse {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(134, 239, 172, 0.12);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 0.96;
+      letter-spacing: -0.075em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #f8fafc, var(--cyan), var(--blue), var(--red));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 20px);
+      max-width: 720px;
+    }
+
+    .lead strong {
+      color: #dbeafe;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .terminal {
+      position: relative;
+      border: 1px solid var(--line);
+      background: rgba(2, 6, 23, 0.78);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .terminal-bar {
+      height: 46px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: #ef4444;
+    }
+
+    .dot:nth-child(2) {
+      background: #f59e0b;
+    }
+
+    .dot:nth-child(3) {
+      background: #22c55e;
+    }
+
+    .terminal pre {
+      margin: 0;
+      padding: 22px;
+      color: #c4d5f2;
+      font: 500 14px/1.75 "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      overflow-x: auto;
+    }
+
+    .comment {
+      color: #64748b;
+    }
+
+    .cmd {
+      color: var(--cyan);
+    }
+
+    .str {
+      color: var(--green);
+    }
+
+    .key {
+      color: var(--yellow);
+    }
+
+    .type {
+      color: var(--red);
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1;
+      letter-spacing: -0.055em;
+    }
+
+    .section-copy {
+      margin: 10px 0 0;
+      color: var(--muted);
+      max-width: 680px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      position: relative;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: 0 14px 42px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(96, 165, 250, 0.11), transparent 16rem);
+      pointer-events: none;
+    }
+
+    .card>* {
+      position: relative;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 750;
+      margin-bottom: 16px;
+      background: rgba(255, 255, 255, 0.035);
+      letter-spacing: 0.01em;
+    }
+
+    .tag.in-progress {
+      color: #bae6fd;
+      border-color: rgba(96, 165, 250, 0.34);
+    }
+
+    .tag.planned {
+      color: #fecdd3;
+      border-color: rgba(251, 113, 133, 0.34);
+    }
+
+    .tag.prototype {
+      color: #bbf7d0;
+      border-color: rgba(134, 239, 172, 0.32);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      letter-spacing: -0.035em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .project-meta {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    .project-meta strong {
+      color: var(--text);
+    }
+
+    .tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tech li {
+      font-size: 12px;
+      color: #dbeafe;
+      padding: 5px 8px;
+      border-radius: 8px;
+      background: rgba(148, 163, 184, 0.11);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 0.86fr 1.14fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 32px;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      margin-bottom: 8px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 124px 1fr;
+      gap: 16px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .time {
+      color: var(--cyan);
+      font: 750 13px/1.4 "SFMono-Regular", Consolas, monospace;
+    }
+
+    .timeline-item h3 {
+      margin: 0 0 4px;
+      font-size: 17px;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .skill-group h3 {
+      margin: 0 0 12px;
+      font-size: 17px;
+      color: #dbeafe;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill {
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #dbeafe;
+      background: rgba(255, 255, 255, 0.04);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding: 32px;
+      border-radius: calc(var(--radius) + 8px);
+      background: linear-gradient(135deg, rgba(96, 165, 250, 0.16), rgba(251, 113, 133, 0.12));
+      border: 1px solid rgba(96, 165, 250, 0.22);
+      box-shadow: var(--shadow);
+    }
+
+    footer {
+      padding: 34px 0 50px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 940px) {
+
+      .hero,
+      .about,
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+
+      .skills {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .hero {
+        padding-top: 64px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        width: min(100% - 28px, 1140px);
+      }
+
+      .stats,
+      .skills {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions,
+      .contact-card .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .nav-right {
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="#top" aria-label="Vissza az oldal tetejére">
+        <span class="logo-mark">{ }</span>
+        <span>Levi.backend</span>
+      </a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#projects" data-i18n="navProjects">Projektek</a>
+          <a href="#about" data-i18n="navAbout">Rólam</a>
+          <a href="#skills" data-i18n="navStack">Stack</a>
+          <a href="#roadmap" data-i18n="navRoadmap">Roadmap</a>
+          <a href="#contact" data-i18n="navHire">Hire me</a>
+        </div>
+        <button class="lang-toggle" type="button" id="langToggle" aria-label="Switch language">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top" class="container">
+    <section class="hero">
+      <div>
+        <div class="eyebrow"><span class="pulse"></span><span data-i18n="eyebrow">Junior Backend Developer • C# • Java •
+            Python • Node.js</span></div>
+        <h1 data-i18n="heroTitle">Backend-fókuszú fejlesztőként <span class="gradient-text">megbízható
+            rendszereket</span> és praktikus webes eszközöket építek.</h1>
+        <p class="lead" data-i18n="heroLead">
+          Szia, Levi vagyok. Junior backend fejlesztőként olyan rendszerek érdekelnek, ahol a logika, az adatkezelés és
+          a tiszta kód valódi értéket ad. Gyorsan tanulok, kreatívan oldok meg problémákat, és fontos nekem, hogy amit
+          építek, az tényleg működjön.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#projects" data-i18n="viewProjects">Projektek megnézése</a>
+          <a class="btn" href="mailto:leventetudos@gmail.com" data-i18n="hireMe">Hire me</a>
+          <a class="btn" href="https://github.com/TudosLevente" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </div>
+
+      <div class="terminal" aria-label="Backend developer terminal illustration">
+        <div class="terminal-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <pre><code><span class="comment">// DeveloperProfile.cs</span>
+<span class="cmd">public class</span> <span class="type">Levi</span> {
+  <span class="cmd">public string</span> Role = <span class="str">"Junior Backend Developer"</span>;
+  <span class="cmd">public string[]</span> Stack = {
+    <span class="str">"C#"</span>, <span class="str">"Java"</span>, <span class="str">"Python"</span>, <span class="str">"Node.js"</span>, <span class="str">"MySQL"</span>
+  };
+  <span class="cmd">public string</span> Mindset = <span class="str">"learn fast, ship clean, debug calmly"</span>;
+  <span class="cmd">public bool</span> OpenToInternship = <span class="key">true</span>;
+}
+
+<span class="cmd">dotnet</span> run --project portfolio
+<span class="comment">✓ backend-first mindset</span>
+<span class="comment">✓ bilingual communication</span>
+<span class="comment">✓ reliable problem solving</span></code></pre>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="projectsTitle">Kiemelt projektirányok</h2>
+          <p class="section-copy" data-i18n="projectsCopy">Ezek jelenleg tervezett vagy folyamatban lévő projektirányok.
+            Nem kész termékként vannak bemutatva, hanem olyan fejlesztési célokként, amelyek jól mutatják a
+            backend-fókuszt, a problémamegoldást és a tanulási irányt.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <span class="tag in-progress" data-i18n="tagInProgress">Folyamatban</span>
+          <h3>Internship Tracker API</h3>
+          <p data-i18n="project1Text">Backend API gyakornoki és állásjelentkezések követésére: cégek, státuszok,
+            határidők, jegyzetek és kereshető előzmények.</p>
+          <div class="project-meta"><strong data-i18n="goalLabel">Cél:</strong> <span data-i18n="project1Goal">tiszta
+              REST végpontok, adatbázis-tervezés, auth-ready struktúra.</span></div>
+          <ul class="tech">
+            <li>C#</li>
+            <li>ASP.NET Core</li>
+            <li>MySQL</li>
+            <li>REST API</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag prototype" data-i18n="tagPrototype">Prototípus</span>
+          <h3>Practice Exam Generator</h3>
+          <p data-i18n="project2Text">Tanulást segítő webes eszköz, amely témákból gyakorlófeladatokat, teszteket és
+            pontozható válaszokat készít.</p>
+          <div class="project-meta"><strong data-i18n="goalLabel">Cél:</strong> <span data-i18n="project2Goal">backend
+              logika, adatmodellek és kérdésgenerálási folyamat megtervezése.</span></div>
+          <ul class="tech">
+            <li>Python</li>
+            <li>FastAPI</li>
+            <li>React</li>
+            <li>JSON</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag planned" data-i18n="tagPlannedCase">Tervezett case study</span>
+          <h3>Small Business Inventory System</h3>
+          <p data-i18n="project3Text">Egyszerű készletkezelő rendszer kisvállalkozásoknak: termékek, mennyiségek,
+            riasztási limitek és exportálható listák.</p>
+          <div class="project-meta"><strong data-i18n="goalLabel">Cél:</strong> <span data-i18n="project3Goal">praktikus
+              CRUD rendszer adatbázis-központú gondolkodással.</span></div>
+          <ul class="tech">
+            <li>Java</li>
+            <li>Spring Boot</li>
+            <li>MySQL</li>
+            <li>Vue.js</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag in-progress" data-i18n="tagInProgress">Folyamatban</span>
+          <h3>Code Snippet Vault</h3>
+          <p data-i18n="project4Text">Saját kódrészletek és tanulási jegyzetek rendszerezésére készült alkalmazás
+            tagekkel, kereséssel és kategóriákkal.</p>
+          <div class="project-meta"><strong data-i18n="goalLabel">Cél:</strong> <span data-i18n="project4Goal">hasznos
+              fejlesztői eszköz tiszta felülettel és strukturált backenddel.</span></div>
+          <ul class="tech">
+            <li>Node.js</li>
+            <li>TypeScript</li>
+            <li>React</li>
+            <li>Git</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag planned" data-i18n="tagPlanned">Tervezett</span>
+          <h3>C++ Console Toolkit</h3>
+          <p data-i18n="project5Text">Kisebb parancssoros eszközök gyűjteménye fájlkezeléshez, algoritmusgyakorláshoz és
+            adatok feldolgozásához.</p>
+          <div class="project-meta"><strong data-i18n="goalLabel">Cél:</strong> <span data-i18n="project5Goal">alapok,
+              algoritmusok és alacsonyabb szintű gondolkodás erősítése.</span></div>
+          <ul class="tech">
+            <li>C++</li>
+            <li>CLI</li>
+            <li>Algorithms</li>
+            <li>File I/O</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="about">
+        <div class="card">
+          <h2 data-i18n="aboutTitle">Rólam</h2>
+          <p class="section-copy" data-i18n="aboutText1">
+            16 éve tanulok harcművészetet, ami sokat formált azon, hogyan állok hozzá a fejlődéshez: fegyelem, ismétlés,
+            türelem és gyors alkalmazkodás. Ugyanezt a szemléletet viszem át a programozásba is. Nem csak kódot akarok
+            írni, hanem stabil, érthető és használható rendszereket építeni.
+          </p>
+          <p class="section-copy" data-i18n="aboutText2">
+            Jelenleg backend fejlesztésre fókuszálok, főleg C#, Java, Python, Node.js és adatbázis-alapú alkalmazások
+            érdekelnek. Gyakornoki vagy junior lehetőséget keresek, ahol valós projekteken fejlődhetek és megbízható
+            munkával tudok hozzájárulni a csapat eredményeihez.
+          </p>
+          <div class="stats" style="margin-top: 24px;">
+            <div class="card stat"><strong>16</strong>
+              <p data-i18n="stat1">év harcművészeti fegyelem</p>
+            </div>
+            <div class="card stat"><strong>2</strong>
+              <p data-i18n="stat2">nyelv: magyar és angol</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="roadmap">
+          <h2 data-i18n="roadmapTitle">Roadmap</h2>
+          <div class="timeline" style="margin-top: 22px;">
+            <div class="timeline-item">
+              <span class="time" data-i18n="roadmapNow">Most</span>
+              <div>
+                <h3 data-i18n="roadmap1Title">Backend alapok</h3>
+                <p data-i18n="roadmap1Text">C#, Java, Python, Node.js, MySQL és tiszta API-struktúrák gyakorlása kisebb,
+                  bemutatható projekteken.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <span class="time" data-i18n="roadmapNext">Következő</span>
+              <div>
+                <h3 data-i18n="roadmap2Title">Valós projektdemók</h3>
+                <p data-i18n="roadmap2Text">GitHubon publikálható demók készítése dokumentációval, README-vel,
+                  képernyőképekkel és rövid technikai leírással.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <span class="time" data-i18n="roadmapTarget">Cél</span>
+              <div>
+                <h3 data-i18n="roadmap3Title">Gyakornoki / junior backend szerep</h3>
+                <p data-i18n="roadmap3Text">Olyan csapatba kerülni, ahol valós rendszereken tudok fejlődni, kérdezni,
+                  dolgozni és egyre több felelősséget vállalni.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="skillsTitle">Technikai stack</h2>
+          <p class="section-copy" data-i18n="skillsCopy">A portfólió backend irányba pozicionál, de megmutatja, hogy
+            frontend oldalon is van elég alap a teljesebb webes gondolkodáshoz.</p>
+        </div>
+      </div>
+      <div class="skills">
+        <div class="card skill-group">
+          <h3>Backend</h3>
+          <div class="skill-list">
+            <span class="skill">C#</span><span class="skill">Java</span><span class="skill">Python</span><span
+              class="skill">Node.js</span><span class="skill">TypeScript</span>
+          </div>
+        </div>
+        <div class="card skill-group">
+          <h3>Frontend</h3>
+          <div class="skill-list">
+            <span class="skill">HTML</span><span class="skill">CSS</span><span class="skill">JavaScript</span><span
+              class="skill">React</span><span class="skill">Vue.js</span>
+          </div>
+        </div>
+        <div class="card skill-group">
+          <h3 data-i18n="toolsTitle">Adat & eszközök</h3>
+          <div class="skill-list">
+            <span class="skill">MySQL</span><span class="skill">Git</span><span class="skill">GitHub</span><span
+              class="skill">Figma</span><span class="skill">REST concepts</span>
+          </div>
+        </div>
+        <div class="card skill-group">
+          <h3 data-i18n="strengthsTitle">Erősségek</h3>
+          <div class="skill-list">
+            <span class="skill" data-i18n="strength1">Gyors tanulás</span><span class="skill"
+              data-i18n="strength2">Kreativitás</span><span class="skill"
+              data-i18n="strength3">Megbízhatóság</span><span class="skill"
+              data-i18n="strength4">Problémamegoldás</span><span class="skill"
+              data-i18n="strength5">Alkalmazkodás</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-card">
+        <div>
+          <h2 data-i18n="contactTitle">Hire me</h2>
+          <p class="section-copy" data-i18n="contactCopy">Nyitott vagyok gyakornoki és junior fejlesztői lehetőségekre,
+            főleg backend-fókuszú szerepekre, ahol a C#, Java, Python, Node.js vagy SQL hasznos. Magyarul és angolul is
+            szívesen kommunikálok.</p>
+        </div>
+        <div class="hero-actions" style="margin-top: 0;">
+          <a class="btn primary" href="mailto:leventetudos@gmail.com">Email</a>
+          <a class="btn" href="https://github.com/TudosLevente" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/levente-t%C3%BCd%C5%91s-582a81259/" target="_blank"
+            rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container"><span data-i18n="footerPrefix">©</span> <span id="year"></span> Tüdős Levente <span
+        data-i18n="footerText"></span></div>
+  </footer>
+
+  <script>
+    const translations = {
+      hu: {
+        navProjects: "Projektek",
+        navAbout: "Rólam",
+        navStack: "Stack",
+        navRoadmap: "Roadmap",
+        navHire: "Hire me",
+        eyebrow: "Junior Backend Developer • C# • Java • Python • Node.js",
+        heroTitle: "Backend-fókuszú fejlesztőként <span class='gradient-text'>megbízható rendszereket</span> és praktikus webes eszközöket építek.",
+        heroLead: "Szia, Levi vagyok. Junior backend fejlesztőként olyan rendszerek érdekelnek, ahol a logika, az adatkezelés és a tiszta kód valódi értéket ad. Gyorsan tanulok, kreatívan oldok meg problémákat, és fontos nekem, hogy amit építek, az tényleg működjön.",
+        viewProjects: "Projektek megnézése",
+        hireMe: "Hire me",
+        projectsTitle: "Kiemelt projektirányok",
+        projectsCopy: "Ezek jelenleg tervezett vagy folyamatban lévő projektirányok. Nem kész termékként vannak bemutatva, hanem olyan fejlesztési célokként, amelyek jól mutatják a backend-fókuszt, a problémamegoldást és a tanulási irányt.",
+        tagInProgress: "Folyamatban",
+        tagPrototype: "Prototípus",
+        tagPlannedCase: "Tervezett case study",
+        tagPlanned: "Tervezett",
+        goalLabel: "Cél:",
+        project1Text: "Backend API gyakornoki és állásjelentkezések követésére: cégek, státuszok, határidők, jegyzetek és kereshető előzmények.",
+        project1Goal: "tiszta REST végpontok, adatbázis-tervezés, auth-ready struktúra.",
+        project2Text: "Tanulást segítő webes eszköz, amely témákból gyakorlófeladatokat, teszteket és pontozható válaszokat készít.",
+        project2Goal: "backend logika, adatmodellek és kérdésgenerálási folyamat megtervezése.",
+        project3Text: "Egyszerű készletkezelő rendszer kisvállalkozásoknak: termékek, mennyiségek, riasztási limitek és exportálható listák.",
+        project3Goal: "praktikus CRUD rendszer adatbázis-központú gondolkodással.",
+        project4Text: "Saját kódrészletek és tanulási jegyzetek rendszerezésére készült alkalmazás tagekkel, kereséssel és kategóriákkal.",
+        project4Goal: "hasznos fejlesztői eszköz tiszta felülettel és strukturált backenddel.",
+        project5Text: "Kisebb parancssoros eszközök gyűjteménye fájlkezeléshez, algoritmusgyakorláshoz és adatok feldolgozásához.",
+        project5Goal: "alapok, algoritmusok és alacsonyabb szintű gondolkodás erősítése.",
+        aboutTitle: "Rólam",
+        aboutText1: "16 éve tanulok harcművészetet, ami sokat formált azon, hogyan állok hozzá a fejlődéshez: fegyelem, ismétlés, türelem és gyors alkalmazkodás. Ugyanezt a szemléletet viszem át a programozásba is. Nem csak kódot akarok írni, hanem stabil, érthető és használható rendszereket építeni.",
+        aboutText2: "Jelenleg backend fejlesztésre fókuszálok, főleg C#, Java, Python, Node.js és adatbázis-alapú alkalmazások érdekelnek. Gyakornoki vagy junior lehetőséget keresek, ahol valós projekteken fejlődhetek és megbízható munkával tudok hozzájárulni a csapat eredményeihez.",
+        stat1: "év harcművészeti fegyelem",
+        stat2: "nyelv: magyar és angol",
+        roadmapTitle: "Roadmap",
+        roadmapNow: "Most",
+        roadmapNext: "Következő",
+        roadmapTarget: "Cél",
+        roadmap1Title: "Backend alapok",
+        roadmap1Text: "C#, Java, Python, Node.js, MySQL és tiszta API-struktúrák gyakorlása kisebb, bemutatható projekteken.",
+        roadmap2Title: "Valós projektdemók",
+        roadmap2Text: "GitHubon publikálható demók készítése dokumentációval, README-vel, képernyőképekkel és rövid technikai leírással.",
+        roadmap3Title: "Gyakornoki / junior backend szerep",
+        roadmap3Text: "Olyan csapatba kerülni, ahol valós rendszereken tudok fejlődni, kérdezni, dolgozni és egyre több felelősséget vállalni.",
+        skillsTitle: "Technikai stack",
+        skillsCopy: "A portfólió backend irányba pozicionál, de megmutatja, hogy frontend oldalon is van elég alap a teljesebb webes gondolkodáshoz.",
+        toolsTitle: "Adat & eszközök",
+        strengthsTitle: "Erősségek",
+        strength1: "Gyors tanulás",
+        strength2: "Kreativitás",
+        strength3: "Megbízhatóság",
+        strength4: "Problémamegoldás",
+        strength5: "Alkalmazkodás",
+        contactTitle: "Hire me",
+        contactCopy: "Nyitott vagyok gyakornoki és junior fejlesztői lehetőségekre, főleg backend-fókuszú szerepekre, ahol a C#, Java, Python, Node.js vagy SQL hasznos. Magyarul és angolul is szívesen kommunikálok.",
+        footerPrefix: "©",
+        footerText: ""
+      },
+      en: {
+        navProjects: "Projects",
+        navAbout: "About",
+        navStack: "Stack",
+        navRoadmap: "Roadmap",
+        navHire: "Hire me",
+        eyebrow: "Junior Backend Developer • C# • Java • Python • Node.js",
+        heroTitle: "Backend-focused developer building <span class='gradient-text'>reliable systems</span> and practical web tools.",
+        heroLead: "Hi, I’m Levi. As a junior backend developer, I’m interested in systems where logic, data handling and clean code create real value. I learn fast, solve problems creatively, and care about building things that actually work.",
+        viewProjects: "View projects",
+        hireMe: "Hire me",
+        projectsTitle: "Selected project directions",
+        projectsCopy: "These are planned or in-progress project directions. They are not presented as finished products, but as development goals that demonstrate backend focus, problem solving and learning direction.",
+        tagInProgress: "In progress",
+        tagPrototype: "Prototype",
+        tagPlannedCase: "Planned case study",
+        tagPlanned: "Planned",
+        goalLabel: "Goal:",
+        project1Text: "A backend API for tracking internship and job applications: companies, statuses, deadlines, notes and searchable history.",
+        project1Goal: "clean REST endpoints, database design and an authentication-ready structure.",
+        project2Text: "A study-support web tool that creates practice questions, tests and scoreable answers from selected topics.",
+        project2Goal: "design backend logic, data models and a question-generation workflow.",
+        project3Text: "A simple inventory management system for small businesses: products, quantities, alert limits and exportable lists.",
+        project3Goal: "build a practical CRUD system with database-first thinking.",
+        project4Text: "An app for organizing personal code snippets and learning notes with tags, search and categories.",
+        project4Goal: "create a useful developer tool with a clean UI and structured backend.",
+        project5Text: "A collection of small command-line tools for file handling, algorithm practice and data processing.",
+        project5Goal: "strengthen fundamentals, algorithms and lower-level thinking.",
+        aboutTitle: "About Levi",
+        aboutText1: "I have been learning martial arts for 16 years, which shaped how I approach improvement: discipline, repetition, patience and fast adaptation. I bring the same mindset into programming. I do not just want to write code; I want to build stable, understandable and useful systems.",
+        aboutText2: "I am currently focused on backend development, especially C#, Java, Python, Node.js and database-backed applications. I am looking for an internship or junior opportunity where I can grow through real projects and contribute with reliable work.",
+        stat1: "years of martial arts discipline",
+        stat2: "languages: Hungarian and English",
+        roadmapTitle: "Roadmap",
+        roadmapNow: "Now",
+        roadmapNext: "Next",
+        roadmapTarget: "Target",
+        roadmap1Title: "Backend foundations",
+        roadmap1Text: "Practicing C#, Java, Python, Node.js, MySQL and clean API structures through smaller, presentable projects.",
+        roadmap2Title: "Real project demos",
+        roadmap2Text: "Creating GitHub-ready demos with documentation, README files, screenshots and short technical explanations.",
+        roadmap3Title: "Internship / junior backend role",
+        roadmap3Text: "Joining a team where I can grow on real systems, ask questions, work reliably and take on more responsibility over time.",
+        skillsTitle: "Technical stack",
+        skillsCopy: "The portfolio is positioned toward backend development, while also showing enough frontend knowledge for broader web development thinking.",
+        toolsTitle: "Data & Tools",
+        strengthsTitle: "Strengths",
+        strength1: "Fast learner",
+        strength2: "Creative",
+        strength3: "Reliable",
+        strength4: "Problem solver",
+        strength5: "Adaptable",
+        contactTitle: "Hire me",
+        contactCopy: "I am open to internship and junior developer opportunities, especially backend-focused roles where C#, Java, Python, Node.js or SQL are useful. I am comfortable communicating in both Hungarian and English.",
+        footerPrefix: "©",
+        footerText: ""
+      }
+    };
+
+    const langToggle = document.getElementById("langToggle");
+    const savedLanguage = localStorage.getItem("portfolioLanguage") || "hu";
+
+    function setLanguage(language) {
+      document.documentElement.lang = language;
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.getAttribute("data-i18n");
+        if (translations[language][key]) {
+          element.innerHTML = translations[language][key];
+        }
+      });
+      langToggle.textContent = language === "hu" ? "EN" : "HU";
+      localStorage.setItem("portfolioLanguage", language);
+    }
+
+    langToggle.addEventListener("click", () => {
+      const currentLanguage = localStorage.getItem("portfolioLanguage") || "hu";
+      setLanguage(currentLanguage === "hu" ? "en" : "hu");
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    setLanguage(savedLanguage);
+  </script>
+</body>
+
+</html>
