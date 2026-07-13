@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Levi | Junior Backend Developer</title>
   <meta name="description" />
+  <!-- Ikonok betöltése a Tech Stackhez -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
   <style>
     :root {
       --bg: #05070d;
@@ -241,7 +243,6 @@
       }
     }
 
-    /* Kisebb lett a főcím mérete */
     h1 {
       margin: 0;
       font-size: clamp(28px, 4.5vw, 48px);
@@ -259,7 +260,6 @@
       filter: drop-shadow(0 0 12px rgba(103, 232, 249, 0.28));
     }
 
-    /* Kisebb lett a bekezdés mérete és a szélessége is */
     .lead {
       margin: 20px 0 0;
       color: var(--muted);
@@ -566,12 +566,20 @@
     }
 
     .skill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 8px 10px;
       border: 1px solid rgba(103, 232, 249, 0.30);
       color: #dbeafe;
       background: rgba(255, 255, 255, 0.04);
       font-size: 13px;
       font-weight: 900;
+    }
+
+    .skill i {
+      font-size: 16px;
+      color: var(--cyan);
     }
 
     .contact-card {
@@ -822,32 +830,42 @@
         <div class="card skill-group">
           <h3>Backend</h3>
           <div class="skill-list">
-            <span class="skill">C#</span><span class="skill">Java</span><span class="skill">Python</span><span
-              class="skill">Node.js</span><span class="skill">TypeScript</span>
+            <span class="skill"><i class="devicon-csharp-plain"></i> <span>C#</span></span>
+            <span class="skill"><i class="devicon-java-plain"></i> <span>Java</span></span>
+            <span class="skill"><i class="devicon-python-plain"></i> <span>Python</span></span>
+            <span class="skill"><i class="devicon-nodejs-plain"></i> <span>Node.js</span></span>
+            <span class="skill"><i class="devicon-typescript-plain"></i> <span>TypeScript</span></span>
           </div>
         </div>
         <div class="card skill-group">
           <h3>Frontend</h3>
           <div class="skill-list">
-            <span class="skill">HTML</span><span class="skill">CSS</span><span class="skill">JavaScript</span><span
-              class="skill">React</span><span class="skill">Vue.js</span>
+            <span class="skill"><i class="devicon-html5-plain"></i> <span>HTML</span></span>
+            <span class="skill"><i class="devicon-css3-plain"></i> <span>CSS</span></span>
+            <span class="skill"><i class="devicon-javascript-plain"></i> <span>JavaScript</span></span>
+            <span class="skill"><i class="devicon-react-original"></i> <span>React</span></span>
+            <span class="skill"><i class="devicon-vuejs-plain"></i> <span>Vue.js</span></span>
           </div>
         </div>
         <div class="card skill-group">
-          <h3 data-i18n="toolsTitle">Adat & eszközök</h3>
+          <h3 data-i18n="toolsTitle">Adatbázis & Eszközök</h3>
           <div class="skill-list">
-            <span class="skill">MySQL</span><span class="skill">SQLite</span><span class="skill">PostgreSQL</span><span
-              class="skill">Git</span><span class="skill">GitHub</span><span class="skill">REST concepts</span>
+            <span class="skill"><i class="devicon-mysql-plain"></i> <span>MySQL</span></span>
+            <span class="skill"><i class="devicon-sqlite-plain"></i> <span>SQLite</span></span>
+            <span class="skill"><i class="devicon-postgresql-plain"></i> <span>PostgreSQL</span></span>
+            <span class="skill"><i class="devicon-git-plain"></i> <span>Git</span></span>
+            <span class="skill"><i class="devicon-github-original"></i> <span>GitHub</span></span>
+            <span class="skill">⚙️ <span>REST API</span></span>
           </div>
         </div>
         <div class="card skill-group">
           <h3 data-i18n="strengthsTitle">Erősségek</h3>
           <div class="skill-list">
-            <span class="skill" data-i18n="strength1">Gyors tanulás</span><span class="skill"
-              data-i18n="strength2">Kreativitás</span><span class="skill"
-              data-i18n="strength3">Megbízhatóság</span><span class="skill"
-              data-i18n="strength4">Problémamegoldás</span><span class="skill"
-              data-i18n="strength5">Alkalmazkodás</span>
+            <span class="skill">⚡ <span data-i18n="strength1">Gyors tanulás</span></span>
+            <span class="skill">💡 <span data-i18n="strength2">Kreativitás</span></span>
+            <span class="skill">🛡️ <span data-i18n="strength3">Megbízhatóság</span></span>
+            <span class="skill">🧩 <span data-i18n="strength4">Problémamegoldás</span></span>
+            <span class="skill">🔄 <span data-i18n="strength5">Alkalmazkodás</span></span>
           </div>
         </div>
       </div>
@@ -913,7 +931,7 @@
         career3Text: "Szoftverfejlesztő és -tesztelő, illetve rendszerüzemeltető képzés. Programozási és hálózati alapok elsajátítása.",
         skillsTitle: "Technikai stack",
         skillsCopy: "A portfólió backend irányba pozicionál, de megmutatja, hogy frontend oldalon is van elég alap a teljesebb webes gondolkodáshoz.",
-        toolsTitle: "Adat & eszközök",
+        toolsTitle: "Adatbázis & Eszközök",
         strengthsTitle: "Erősségek",
         strength1: "Gyors tanulás",
         strength2: "Kreativitás",
@@ -960,7 +978,7 @@
         career3Text: "Software Developer and IT Systems Administrator studies. Gained foundational programming and networking skills.",
         skillsTitle: "Technical stack",
         skillsCopy: "The portfolio is positioned toward backend development, while also showing enough frontend knowledge for broader web development thinking.",
-        toolsTitle: "Data & Tools",
+        toolsTitle: "Databases & Tools",
         strengthsTitle: "Strengths",
         strength1: "Fast learner",
         strength2: "Creative",
