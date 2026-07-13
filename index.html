@@ -383,7 +383,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
       gap: 18px;
     }
 
@@ -726,86 +726,27 @@
     <section id="projects">
       <div class="section-head">
         <div>
-          <h2 data-i18n="projectsTitle">Kiemelt projektirányok</h2>
-          <p class="section-copy" data-i18n="projectsCopy">Ezek jelenleg tervezett vagy folyamatban lévő projektirányok.
-            Nem kész termékként vannak bemutatva, hanem olyan fejlesztési célokként, amelyek jól mutatják a
-            backend-fókuszt, a problémamegoldást és a tanulási irányt.</p>
+          <h2 data-i18n="projectsTitle">Kiemelt projekt</h2>
+          <p class="section-copy" data-i18n="projectsCopy">Ezen a saját fejlesztésű rendszeren keresztül mutatom be a
+            full-stack és backend architekturális gondolkodásomat.</p>
         </div>
       </div>
 
       <div class="grid">
         <article class="card">
-          <span class="tag in-progress" data-i18n="tagInProgress">Folyamatban</span>
-          <h3>Internship Tracker API</h3>
-          <p data-i18n="project1Text">Backend API gyakornoki és állásjelentkezések követésére: cégek, státuszok,
-            határidők, jegyzetek és kereshető előzmények.</p>
-          <div class="project-meta"><strong data-i18n="goalLabel">Cél:</strong> <span data-i18n="project1Goal">tiszta
-              REST végpontok, adatbázis-tervezés, auth-ready struktúra.</span></div>
-          <ul class="tech">
-            <li>C#</li>
-            <li>ASP.NET Core</li>
-            <li>MySQL</li>
-            <li>REST API</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <span class="tag prototype" data-i18n="tagPrototype">Prototípus</span>
-          <h3>Practice Exam Generator</h3>
-          <p data-i18n="project2Text">Tanulást segítő webes eszköz, amely témákból gyakorlófeladatokat, teszteket és
-            pontozható válaszokat készít.</p>
-          <div class="project-meta"><strong data-i18n="goalLabel">Cél:</strong> <span data-i18n="project2Goal">backend
-              logika, adatmodellek és kérdésgenerálási folyamat megtervezése.</span></div>
-          <ul class="tech">
-            <li>Python</li>
-            <li>FastAPI</li>
-            <li>React</li>
-            <li>JSON</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <span class="tag planned" data-i18n="tagPlannedCase">Tervezett case study</span>
-          <h3>Small Business Inventory System</h3>
-          <p data-i18n="project3Text">Egyszerű készletkezelő rendszer kisvállalkozásoknak: termékek, mennyiségek,
-            riasztási limitek és exportálható listák.</p>
-          <div class="project-meta"><strong data-i18n="goalLabel">Cél:</strong> <span data-i18n="project3Goal">praktikus
-              CRUD rendszer adatbázis-központú gondolkodással.</span></div>
-          <ul class="tech">
-            <li>Java</li>
-            <li>Spring Boot</li>
-            <li>MySQL</li>
-            <li>Vue.js</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <span class="tag in-progress" data-i18n="tagInProgress">Folyamatban</span>
-          <h3>Code Snippet Vault</h3>
-          <p data-i18n="project4Text">Saját kódrészletek és tanulási jegyzetek rendszerezésére készült alkalmazás
-            tagekkel, kereséssel és kategóriákkal.</p>
-          <div class="project-meta"><strong data-i18n="goalLabel">Cél:</strong> <span data-i18n="project4Goal">hasznos
-              fejlesztői eszköz tiszta felülettel és strukturált backenddel.</span></div>
+          <span class="tag prototype" data-i18n="tagKMS">Éles projekt</span>
+          <h3 data-i18n="projectTitle">Tagság Nyilvántartó</h3>
+          <p data-i18n="projectKmsText">Komplex full-stack rendszer a harcművészeti edzéseim nyilvántartására.
+            Tanítványok profiljának kezelése, fizetési előzmények és státuszok (havi, féléves) követése.</p>
+          <div class="project-meta"><strong data-i18n="goalLabel">Architektúra:</strong> <span
+              data-i18n="projectKmsGoal">Node.js REST API, React frontend, önálló Python analitikai szerviz, SQLite
+              adatbázis és JWT autentikáció.</span></div>
           <ul class="tech">
             <li>Node.js</li>
-            <li>TypeScript</li>
             <li>React</li>
-            <li>Git</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <span class="tag planned" data-i18n="tagPlanned">Tervezett</span>
-          <h3>C++ Console Toolkit</h3>
-          <p data-i18n="project5Text">Kisebb parancssoros eszközök gyűjteménye fájlkezeléshez, algoritmusgyakorláshoz és
-            adatok feldolgozásához.</p>
-          <div class="project-meta"><strong data-i18n="goalLabel">Cél:</strong> <span data-i18n="project5Goal">alapok,
-              algoritmusok és alacsonyabb szintű gondolkodás erősítése.</span></div>
-          <ul class="tech">
-            <li>C++</li>
-            <li>CLI</li>
-            <li>Algorithms</li>
-            <li>File I/O</li>
+            <li>Python</li>
+            <li>SQLite</li>
+            <li>JWT</li>
           </ul>
         </article>
       </div>
@@ -894,8 +835,8 @@
         <div class="card skill-group">
           <h3 data-i18n="toolsTitle">Adat & eszközök</h3>
           <div class="skill-list">
-            <span class="skill">MySQL</span><span class="skill">Git</span><span class="skill">GitHub</span><span
-              class="skill">Figma</span><span class="skill">REST concepts</span>
+            <span class="skill">MySQL</span><span class="skill">SQLite</span><span class="skill">PostgreSQL</span><span
+              class="skill">Git</span><span class="skill">GitHub</span><span class="skill">REST concepts</span>
           </div>
         </div>
         <div class="card skill-group">
@@ -947,23 +888,13 @@
         heroLead: "Szia, Levi vagyok, az Óbudai Egyetem mérnökinformatikus hallgatója. Junior backend fejlesztőként elsősorban modern JavaScript (Node.js) és .NET C# környezetben dolgozom. Szeretem átlátni a rendszereket a szerveroldali logikától az adatbázisokig, és olyan megoldásokat építeni, amik a gyakorlatban is stabilan működnek.",
         viewProjects: "Projektek megnézése",
         hireMe: "Hire me",
-        projectsTitle: "Kiemelt projektirányok",
-        projectsCopy: "Ezek jelenleg tervezett vagy folyamatban lévő projektirányok. Nem kész termékként vannak bemutatva, hanem olyan fejlesztési célokként, amelyek jól mutatják a backend-fókuszt, a problémamegoldást és a tanulási irányt.",
-        tagInProgress: "Folyamatban",
-        tagPrototype: "Prototípus",
-        tagPlannedCase: "Tervezett case study",
-        tagPlanned: "Tervezett",
-        goalLabel: "Cél:",
-        project1Text: "Backend API gyakornoki és állásjelentkezések követésére: cégek, státuszok, határidők, jegyzetek és kereshető előzmények.",
-        project1Goal: "tiszta REST végpontok, adatbázis-tervezés, auth-ready struktúra.",
-        project2Text: "Tanulást segítő webes eszköz, amely témákból gyakorlófeladatokat, teszteket és pontozható válaszokat készít.",
-        project2Goal: "backend logika, adatmodellek és kérdésgenerálási folyamat megtervezése.",
-        project3Text: "Egyszerű készletkezelő rendszer kisvállalkozásoknak: termékek, mennyiségek, riasztási limitek és exportálható listák.",
-        project3Goal: "praktikus CRUD rendszer adatbázis-központú gondolkodással.",
-        project4Text: "Saját kódrészletek és tanulási jegyzetek rendszerezésére készült alkalmazás tagekkel, kereséssel és kategóriákkal.",
-        project4Goal: "hasznos fejlesztői eszköz tiszta felülettel és strukturált backenddel.",
-        project5Text: "Kisebb parancssoros eszközök gyűjteménye fájlkezeléshez, algoritmusgyakorláshoz és adatok feldolgozásához.",
-        project5Goal: "alapok, algoritmusok és alacsonyabb szintű gondolkodás erősítése.",
+        projectsTitle: "Kiemelt projekt",
+        projectsCopy: "Ezen a saját fejlesztésű rendszeren keresztül mutatom be a full-stack és backend architekturális gondolkodásomat.",
+        tagKMS: "Éles projekt",
+        projectTitle: "Tagság Nyilvántartó",
+        projectKmsText: "Komplex full-stack rendszer a harcművészeti edzéseim nyilvántartására. Tanítványok profiljának kezelése, fizetési előzmények és státuszok (havi, féléves) követése.",
+        goalLabel: "Architektúra:",
+        projectKmsGoal: "Node.js REST API, React frontend, önálló Python analitikai szerviz, SQLite adatbázis és JWT autentikáció.",
         aboutTitle: "Rólam",
         aboutText1: "16 éve tanulok harcművészetet, ami sokat formált azon, hogyan állok hozzá a fejlődéshez: fegyelem, ismétlés, türelem és gyors alkalmazkodás. Ugyanezt a szemléletet viszem át a programozásba is. Nem csak kódot akarok írni, hanem stabil, érthető és használható rendszereket építeni.",
         aboutText2: "Szakmai tapasztalatot eddig egy barcelonai fejlesztői csapatban (Library of Things) szereztem, ahol a közös munka és a Git verziókövetés a napi rutinommá vált. Jelenleg Node.js, C#, Java és Python alapú projekteken dolgozom. Olyan junior vagy gyakornoki lehetőséget keresek, ahol valós rendszereken dolgozhatok és érdemben hozzájárulhatok a csapat eredményeihez.",
@@ -1004,23 +935,13 @@
         heroLead: "Hi, I’m Levi, a Computer Engineering student at Óbuda University. As a junior backend developer, I primarily work with modern JavaScript (Node.js) and the .NET C# ecosystem. I enjoy building robust server-side logic and databases to create solutions that actually work in production.",
         viewProjects: "View projects",
         hireMe: "Hire me",
-        projectsTitle: "Selected project directions",
-        projectsCopy: "These are planned or in-progress project directions. They are not presented as finished products, but as development goals that demonstrate backend focus, problem solving and learning direction.",
-        tagInProgress: "In progress",
-        tagPrototype: "Prototype",
-        tagPlannedCase: "Planned case study",
-        tagPlanned: "Planned",
-        goalLabel: "Goal:",
-        project1Text: "A backend API for tracking internship and job applications: companies, statuses, deadlines, notes and searchable history.",
-        project1Goal: "clean REST endpoints, database design and an authentication-ready structure.",
-        project2Text: "A study-support web tool that creates practice questions, tests and scoreable answers from selected topics.",
-        project2Goal: "design backend logic, data models and a question-generation workflow.",
-        project3Text: "A simple inventory management system for small businesses: products, quantities, alert limits and exportable lists.",
-        project3Goal: "build a practical CRUD system with database-first thinking.",
-        project4Text: "An app for organizing personal code snippets and learning notes with tags, search and categories.",
-        project4Goal: "create a useful developer tool with a clean UI and structured backend.",
-        project5Text: "A collection of small command-line tools for file handling, algorithm practice and data processing.",
-        project5Goal: "strengthen fundamentals, algorithms and lower-level thinking.",
+        projectsTitle: "Featured Project",
+        projectsCopy: "I showcase my full-stack and backend architectural thinking through this custom-built system.",
+        tagKMS: "Live Project",
+        projectTitle: "Membership Registry",
+        projectKmsText: "A comprehensive full-stack application for managing my martial arts classes. Includes student profile management, payment tracking (monthly, semi-annual), and history.",
+        goalLabel: "Architecture:",
+        projectKmsGoal: "Node.js REST API, React frontend, standalone Python analytics service, SQLite database, and JWT authentication.",
         aboutTitle: "About Levi",
         aboutText1: "I have been learning martial arts for 16 years, which shaped how I approach improvement: discipline, repetition, patience and fast adaptation. I bring the same mindset into programming. I do not just want to write code; I want to build stable, understandable and useful systems.",
         aboutText2: "I gained practical experience working with an international development team in Barcelona (Library of Things), which made agile collaboration and version control (Git) part of my daily routine. Currently, I focus on backend projects using Node.js, C#, Java, and Python, and I am looking for a junior or internship role to keep growing and contributing to real systems.",
