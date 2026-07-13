@@ -241,11 +241,12 @@
       }
     }
 
+    /* Kisebb lett a főcím mérete */
     h1 {
       margin: 0;
-      font-size: clamp(38px, 6.4vw, 70px);
-      line-height: 1.02;
-      letter-spacing: -0.06em;
+      font-size: clamp(28px, 4.5vw, 48px);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
       text-transform: uppercase;
       text-shadow: 3px 3px 0 rgba(251, 63, 95, 0.28), 0 0 24px rgba(56, 189, 248, 0.18);
     }
@@ -258,11 +259,12 @@
       filter: drop-shadow(0 0 12px rgba(103, 232, 249, 0.28));
     }
 
+    /* Kisebb lett a bekezdés mérete és a szélessége is */
     .lead {
-      margin: 24px 0 0;
+      margin: 20px 0 0;
       color: var(--muted);
-      font-size: clamp(16px, 1.9vw, 19px);
-      max-width: 740px;
+      font-size: clamp(15px, 1.5vw, 17px);
+      max-width: 680px;
     }
 
     .hero-actions {
@@ -625,7 +627,7 @@
       }
 
       h1 {
-        font-size: clamp(34px, 12vw, 52px);
+        font-size: clamp(26px, 10vw, 42px);
       }
     }
 
@@ -675,7 +677,7 @@
           <a href="#projects" data-i18n="navProjects">Projektek</a>
           <a href="#about" data-i18n="navAbout">Rólam</a>
           <a href="#skills" data-i18n="navStack">Stack</a>
-          <a href="#roadmap" data-i18n="navRoadmap">Roadmap</a>
+          <a href="#career" data-i18n="navCareer">Karrier</a>
           <a href="#contact" data-i18n="navHire">Hire me</a>
         </div>
         <button class="lang-toggle" type="button" id="langToggle" aria-label="Switch language">EN</button>
@@ -776,31 +778,31 @@
           </div>
         </div>
 
-        <div class="card" id="roadmap">
-          <h2 data-i18n="roadmapTitle">Roadmap</h2>
+        <div class="card" id="career">
+          <h2 data-i18n="careerTitle">Háttér & Karrierút</h2>
           <div class="timeline" style="margin-top: 22px;">
             <div class="timeline-item">
-              <span class="time" data-i18n="roadmapNow">Most</span>
+              <span class="time" data-i18n="career1Date">2024 - Jelenleg</span>
               <div>
-                <h3 data-i18n="roadmap1Title">Backend alapok</h3>
-                <p data-i18n="roadmap1Text">C#, Java, Python, Node.js, MySQL és tiszta API-struktúrák gyakorlása kisebb,
-                  bemutatható projekteken.</p>
+                <h3 data-i18n="career1Title">Óbudai Egyetem</h3>
+                <p data-i18n="career1Text">Mérnökinformatika BSc hallgató. Fókuszban a szoftverfejlesztés, modern
+                  technológiák és rendszermérnöki alapok.</p>
               </div>
             </div>
             <div class="timeline-item">
-              <span class="time" data-i18n="roadmapNext">Következő</span>
+              <span class="time" data-i18n="career2Date">2024. Március</span>
               <div>
-                <h3 data-i18n="roadmap2Title">Valós projektdemók</h3>
-                <p data-i18n="roadmap2Text">GitHubon publikálható demók készítése dokumentációval, README-vel,
-                  képernyőképekkel és rövid technikai leírással.</p>
+                <h3 data-i18n="career2Title">Szoftverfejlesztő Gyakornok</h3>
+                <p data-i18n="career2Text">Library of Things (Barcelona, Spanyolország). Többnyelvű React/Next.js
+                  felület lokalizálása és aktív nemzetközi csapatmunka.</p>
               </div>
             </div>
             <div class="timeline-item">
-              <span class="time" data-i18n="roadmapTarget">Cél</span>
+              <span class="time" data-i18n="career3Date">2019 - 2024</span>
               <div>
-                <h3 data-i18n="roadmap3Title">Gyakornoki / junior backend szerep</h3>
-                <p data-i18n="roadmap3Text">Olyan csapatba kerülni, ahol valós rendszereken tudok fejlődni, kérdezni,
-                  dolgozni és egyre több felelősséget vállalni.</p>
+                <h3 data-i18n="career3Title">BMSZC Bolyai János</h3>
+                <p data-i18n="career3Text">Szoftverfejlesztő és -tesztelő, illetve rendszerüzemeltető képzés.
+                  Programozási és hálózati alapok elsajátítása.</p>
               </div>
             </div>
           </div>
@@ -880,7 +882,7 @@
         navProjects: "Projektek",
         navAbout: "Rólam",
         navStack: "Stack",
-        navRoadmap: "Roadmap",
+        navCareer: "Karrier",
         navHire: "Hire me",
         eyebrow: "Junior Backend Developer • C# • Java • Python • Node.js",
         heroTitle: "Backend-fókuszú fejlesztőként <span class='gradient-text'>megbízható rendszereket</span> és praktikus webes eszközöket építek.",
@@ -899,16 +901,16 @@
         aboutText2: "Szakmai tapasztalatot eddig egy barcelonai fejlesztői csapatban (Library of Things) szereztem, ahol a közös munka és a Git verziókövetés a napi rutinommá vált. Jelenleg Node.js, C#, Java és Python alapú projekteken dolgozom. Olyan junior vagy gyakornoki lehetőséget keresek, ahol valós rendszereken dolgozhatok és érdemben hozzájárulhatok a csapat eredményeihez.",
         stat1: "év harcművészeti fegyelem",
         stat2: "nyelv: magyar és angol",
-        roadmapTitle: "Roadmap",
-        roadmapNow: "Most",
-        roadmapNext: "Következő",
-        roadmapTarget: "Cél",
-        roadmap1Title: "Backend alapok",
-        roadmap1Text: "C#, Java, Python, Node.js, MySQL és tiszta API-struktúrák gyakorlása kisebb, bemutatható projekteken.",
-        roadmap2Title: "Valós projektdemók",
-        roadmap2Text: "GitHubon publikálható demók készítése dokumentációval, README-vel, képernyőképekkel és rövid technikai leírással.",
-        roadmap3Title: "Gyakornoki / junior backend szerep",
-        roadmap3Text: "Olyan csapatba kerülni, ahol valós rendszereken tudok fejlődni, kérdezni, dolgozni és egyre több felelősséget vállalni.",
+        careerTitle: "Háttér & Karrierút",
+        career1Date: "2024 - Jelenleg",
+        career1Title: "Óbudai Egyetem",
+        career1Text: "Mérnökinformatika BSc hallgató. Fókuszban a szoftverfejlesztés, modern technológiák és rendszermérnöki alapok.",
+        career2Date: "2024. Március",
+        career2Title: "Szoftverfejlesztő Gyakornok",
+        career2Text: "Library of Things (Barcelona, Spanyolország). Többnyelvű React/Next.js felület lokalizálása és aktív nemzetközi csapatmunka.",
+        career3Date: "2019 - 2024",
+        career3Title: "BMSZC Bolyai János Technikum",
+        career3Text: "Szoftverfejlesztő és -tesztelő, illetve rendszerüzemeltető képzés. Programozási és hálózati alapok elsajátítása.",
         skillsTitle: "Technikai stack",
         skillsCopy: "A portfólió backend irányba pozicionál, de megmutatja, hogy frontend oldalon is van elég alap a teljesebb webes gondolkodáshoz.",
         toolsTitle: "Adat & eszközök",
@@ -927,7 +929,7 @@
         navProjects: "Projects",
         navAbout: "About",
         navStack: "Stack",
-        navRoadmap: "Roadmap",
+        navCareer: "Career",
         navHire: "Hire me",
         eyebrow: "Junior Backend Developer • C# • Java • Python • Node.js",
         heroTitle: "Backend-focused developer building <span class='gradient-text'>reliable systems</span> and practical web tools.",
@@ -946,16 +948,16 @@
         aboutText2: "I gained practical experience working with an international development team in Barcelona (Library of Things), which made agile collaboration and version control (Git) part of my daily routine. Currently, I focus on backend projects using Node.js, C#, Java, and Python, and I am looking for a junior or internship role to keep growing and contributing to real systems.",
         stat1: "years of martial arts discipline",
         stat2: "languages: Hungarian and English",
-        roadmapTitle: "Roadmap",
-        roadmapNow: "Now",
-        roadmapNext: "Next",
-        roadmapTarget: "Target",
-        roadmap1Title: "Backend foundations",
-        roadmap1Text: "Practicing C#, Java, Python, Node.js, MySQL and clean API structures through smaller, presentable projects.",
-        roadmap2Title: "Real project demos",
-        roadmap2Text: "Creating GitHub-ready demos with documentation, README files, screenshots and short technical explanations.",
-        roadmap3Title: "Internship / junior backend role",
-        roadmap3Text: "Joining a team where I can grow on real systems, ask questions, work reliably and take on more responsibility over time.",
+        careerTitle: "Background & Career",
+        career1Date: "2024 - Present",
+        career1Title: "Óbuda University",
+        career1Text: "Computer Engineering BSc student. Focus on software development, modern technologies, and systems engineering fundamentals.",
+        career2Date: "March 2024",
+        career2Title: "Software Developer Intern",
+        career2Text: "Library of Things (Barcelona, Spain). Localized multi-language React/Next.js interfaces and worked in an international team environment.",
+        career3Date: "2019 - 2024",
+        career3Title: "BMSZC Bolyai János",
+        career3Text: "Software Developer and IT Systems Administrator studies. Gained foundational programming and networking skills.",
         skillsTitle: "Technical stack",
         skillsCopy: "The portfolio is positioned toward backend development, while also showing enough frontend knowledge for broader web development thinking.",
         toolsTitle: "Data & Tools",
