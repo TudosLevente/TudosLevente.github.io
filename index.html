@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Levi | Junior Backend Developer</title>
   <meta name="description" />
-  <!-- Ikonok betöltése a Tech Stackhez -->
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
   <style>
     :root {
@@ -183,9 +182,10 @@
       letter-spacing: 0.05em;
       box-shadow: 4px 4px 0 rgba(56, 189, 248, 0.18);
       transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+      cursor: pointer;
     }
 
-    .btn::before {
+    .btn:not(.has-icon)::before {
       content: "▶";
       color: var(--green);
     }
@@ -203,7 +203,7 @@
       box-shadow: 4px 4px 0 rgba(124, 255, 107, 0.22), 0 0 22px rgba(124, 255, 107, 0.22);
     }
 
-    .btn.primary::before {
+    .btn.primary:not(.has-icon)::before {
       color: #06101d;
     }
 
@@ -595,6 +595,104 @@
       box-shadow: 8px 8px 0 rgba(124, 255, 107, 0.13), 0 0 30px rgba(124, 255, 107, 0.13);
     }
 
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 7, 13, 0.85);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      position: relative;
+      width: min(90%, 420px);
+      padding: 32px;
+      background: var(--bg-soft);
+      border: 2px solid var(--blue);
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.15);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 28px;
+      font-weight: 900;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+      transition: color 0.2s ease;
+    }
+
+    .modal-close:hover {
+      color: var(--red);
+      text-shadow: 0 0 8px rgba(251, 63, 95, 0.4);
+    }
+
+    .modal-options {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 24px 0 32px 0;
+    }
+
+    .modal-options label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      color: #f8fbff;
+      font-weight: 900;
+      font-size: 15px;
+    }
+
+    .modal-options input[type="checkbox"] {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--blue);
+      border-radius: 4px;
+      background: rgba(56, 189, 248, 0.08);
+      position: relative;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+
+    .modal-options input[type="checkbox"]:checked {
+      border-color: var(--green);
+    }
+
+    .modal-options input[type="checkbox"]:checked::after {
+      content: "✔";
+      color: var(--green);
+      font-size: 14px;
+      line-height: 1;
+      font-weight: 900;
+      text-shadow: 0 0 8px rgba(124, 255, 107, 0.5);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
     footer {
       padding: 34px 0 50px;
       color: var(--muted);
@@ -602,6 +700,18 @@
       text-align: center;
       font-size: 14px;
       text-transform: uppercase;
+    }
+
+    /* --- ANIMÁCIÓS (REVEAL) OSZTÁLYOK --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     @media (max-width: 940px) {
@@ -669,6 +779,10 @@
       .terminal pre {
         font-size: 12px;
       }
+
+      .modal-actions {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -695,7 +809,7 @@
 
   <main id="top" class="container">
     <section class="hero">
-      <div>
+      <div class="reveal">
         <div class="eyebrow"><span class="pulse"></span><span data-i18n="eyebrow">Junior Backend Developer • C# • Java •
             Python • Node.js</span></div>
         <h1 data-i18n="heroTitle">Backend-fókuszú fejlesztőként <span class="gradient-text">megbízható
@@ -707,12 +821,20 @@
         </p>
         <div class="hero-actions">
           <a class="btn primary" href="#projects" data-i18n="viewProjects">Projektek megnézése</a>
-          <a class="btn" href="mailto:leventetudos@gmail.com" data-i18n="hireMe">Hire me</a>
+          <button type="button" class="btn cv-btn has-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span data-i18n="downloadCv">CV Letöltése</span>
+          </button>
           <a class="btn" href="https://github.com/TudosLevente" target="_blank" rel="noreferrer">GitHub</a>
         </div>
       </div>
 
-      <div class="terminal" aria-label="Backend developer terminal illustration">
+      <div class="terminal reveal" aria-label="Backend developer terminal illustration">
         <div class="terminal-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span
             class="terminal-title">save_slot_01.cs</span></div>
         <pre><code><span class="comment">// DeveloperProfile.cs</span>
@@ -726,14 +848,14 @@
 }
 
 <span class="cmd">dotnet</span> run --project portfolio
-<span class="comment">✓ backend-first mindset</span>
-<span class="comment">✓ bilingual communication</span>
-<span class="comment">✓ reliable problem solving</span></code></pre>
+<span class="comment">// backend-first mindset</span>
+<span class="comment">// bilingual communication</span>
+<span class="comment">// reliable problem solving</span></code></pre>
       </div>
     </section>
 
     <section id="projects">
-      <div class="section-head">
+      <div class="section-head reveal">
         <div>
           <h2 data-i18n="projectsTitle">Kiemelt projekt</h2>
           <p class="section-copy" data-i18n="projectsCopy">Ezen a saját fejlesztésű rendszeren keresztül mutatom be a
@@ -742,7 +864,7 @@
       </div>
 
       <div class="grid">
-        <article class="card">
+        <article class="card reveal">
           <span class="tag prototype" data-i18n="tagKMS">Éles projekt</span>
           <h3 data-i18n="projectTitle">Tagság Nyilvántartó</h3>
           <p data-i18n="projectKmsText">Komplex full-stack rendszer a harcművészeti edzéseim nyilvántartására.
@@ -763,7 +885,7 @@
 
     <section id="about">
       <div class="about">
-        <div class="card">
+        <div class="card reveal">
           <h2 data-i18n="aboutTitle">Rólam</h2>
           <p class="section-copy" data-i18n="aboutText1">
             16 éve tanulok harcművészetet, ami sokat formált azon, hogyan állok hozzá a fejlődéshez: fegyelem, ismétlés,
@@ -786,10 +908,10 @@
           </div>
         </div>
 
-        <div class="card" id="career">
+        <div class="card reveal" id="career">
           <h2 data-i18n="careerTitle">Háttér & Karrierút</h2>
           <div class="timeline" style="margin-top: 22px;">
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
               <span class="time" data-i18n="career1Date">2024 - Jelenleg</span>
               <div>
                 <h3 data-i18n="career1Title">Óbudai Egyetem</h3>
@@ -797,7 +919,7 @@
                   technológiák és rendszermérnöki alapok.</p>
               </div>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
               <span class="time" data-i18n="career2Date">2024. Március</span>
               <div>
                 <h3 data-i18n="career2Title">Szoftverfejlesztő Gyakornok</h3>
@@ -805,7 +927,7 @@
                   felület lokalizálása és aktív nemzetközi csapatmunka.</p>
               </div>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
               <span class="time" data-i18n="career3Date">2019 - 2024</span>
               <div>
                 <h3 data-i18n="career3Title">BMSZC Bolyai János</h3>
@@ -819,15 +941,15 @@
     </section>
 
     <section id="skills">
-      <div class="section-head">
+      <div class="section-head reveal">
         <div>
           <h2 data-i18n="skillsTitle">Technikai stack</h2>
-          <p class="section-copy" data-i18n="skillsCopy">A portfólió backend irányba pozicionál, de megmutatja, hogy
-            frontend oldalon is van elég alap a teljesebb webes gondolkodáshoz.</p>
+          <p class="section-copy" data-i18n="skillsCopy">Bár leginkább a szerveroldali logika és az adatbázisok
+            érdekelnek, frontend oldalon is otthonosan mozgok annyira, hogy egyben lássam a webes folyamatokat.</p>
         </div>
       </div>
       <div class="skills">
-        <div class="card skill-group">
+        <div class="card skill-group reveal">
           <h3>Backend</h3>
           <div class="skill-list">
             <span class="skill"><i class="devicon-csharp-plain"></i> <span>C#</span></span>
@@ -837,7 +959,7 @@
             <span class="skill"><i class="devicon-typescript-plain"></i> <span>TypeScript</span></span>
           </div>
         </div>
-        <div class="card skill-group">
+        <div class="card skill-group reveal">
           <h3>Frontend</h3>
           <div class="skill-list">
             <span class="skill"><i class="devicon-html5-plain"></i> <span>HTML</span></span>
@@ -847,7 +969,7 @@
             <span class="skill"><i class="devicon-vuejs-plain"></i> <span>Vue.js</span></span>
           </div>
         </div>
-        <div class="card skill-group">
+        <div class="card skill-group reveal">
           <h3 data-i18n="toolsTitle">Adatbázis & Eszközök</h3>
           <div class="skill-list">
             <span class="skill"><i class="devicon-mysql-plain"></i> <span>MySQL</span></span>
@@ -858,7 +980,7 @@
             <span class="skill">⚙️ <span>REST API</span></span>
           </div>
         </div>
-        <div class="card skill-group">
+        <div class="card skill-group reveal">
           <h3 data-i18n="strengthsTitle">Erősségek</h3>
           <div class="skill-list">
             <span class="skill">⚡ <span data-i18n="strength1">Gyors tanulás</span></span>
@@ -872,16 +994,24 @@
     </section>
 
     <section id="contact">
-      <div class="contact-card">
+      <div class="contact-card reveal">
         <div>
           <h2 data-i18n="contactTitle">Hire me</h2>
-          <p class="section-copy" data-i18n="contactCopy">Nyitott vagyok gyakornoki és junior pozíciókra, elsősorban
-            Node.js és C# fókuszú backend szerepkörökben. Mivel nemzetközi környezetben is dolgoztam már, az angol
-            nyelvű szakmai kommunikáció (B2) és a csapatmunka nem jelent problémát.</p>
+          <p class="section-copy" data-i18n="contactCopy">Szívesen csatlakoznék egy csapathoz gyakornokként vagy junior
+            fejlesztőként, ahol valós projekteken dolgozhatok. Mivel szereztem már tapasztalatot nemzetközi
+            környezetben, az angol nyelvű szakmai kommunikáció (B2) és a csapatmunka gördülékenyen megy.</p>
         </div>
         <div class="hero-actions" style="margin-top: 0;">
           <a class="btn primary" href="mailto:leventetudos@gmail.com">Email</a>
-          <a class="btn" href="https://github.com/TudosLevente" target="_blank" rel="noreferrer">GitHub</a>
+          <button type="button" class="btn cv-btn has-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span data-i18n="downloadCv">CV Letöltése</span>
+          </button>
           <a class="btn" href="https://www.linkedin.com/in/levente-t%C3%BCd%C5%91s-582a81259/" target="_blank"
             rel="noreferrer">LinkedIn</a>
         </div>
@@ -893,6 +1023,33 @@
     <div class="container"><span data-i18n="footerPrefix">©</span> <span id="year"></span> Levi. <span
         data-i18n="footerText">HTML, CSS és GitHub Pages segítségével készült.</span></div>
   </footer>
+
+  <div id="cvModal" class="modal-overlay">
+    <div class="modal-content card">
+      <button class="modal-close" id="closeModalBtn" aria-label="Bezárás">&times;</button>
+
+      <h3 data-i18n="cvModalTitle" style="margin-top: 0;">Önéletrajz letöltése</h3>
+      <p data-i18n="cvModalText" class="section-copy">Válaszd ki, melyik nyelven (vagy akár mindkettőn) szeretnéd
+        letölteni az önéletrajzomat:</p>
+
+      <div class="modal-options">
+        <label>
+          <input type="checkbox" name="cvLang" value="hu" id="checkHu">
+          <span data-i18n="cvLangHu">Magyar</span>
+        </label>
+        <label>
+          <input type="checkbox" name="cvLang" value="en" id="checkEn">
+          <span data-i18n="cvLangEn">Angol</span>
+        </label>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn primary has-icon" id="downloadCvBtn">
+          <span data-i18n="cvModalDownload">Letöltés</span>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <script>
     const translations = {
@@ -906,6 +1063,7 @@
         heroTitle: "Backend-fókuszú fejlesztőként <span class='gradient-text'>megbízható rendszereket</span> és praktikus webes eszközöket építek.",
         heroLead: "Szia, Levi vagyok, az Óbudai Egyetem mérnökinformatikus hallgatója. Junior backend fejlesztőként elsősorban modern JavaScript (Node.js) és .NET C# környezetben dolgozom. Szeretem átlátni a rendszereket a szerveroldali logikától az adatbázisokig, és olyan megoldásokat építeni, amik a gyakorlatban is stabilan működnek.",
         viewProjects: "Projektek megnézése",
+        downloadCv: "CV Letöltése",
         hireMe: "Hire me",
         projectsTitle: "Kiemelt projekt",
         projectsCopy: "Ezen a saját fejlesztésű rendszeren keresztül mutatom be a full-stack és backend architekturális gondolkodásomat.",
@@ -930,7 +1088,7 @@
         career3Title: "BMSZC Bolyai János Technikum",
         career3Text: "Szoftverfejlesztő és -tesztelő, illetve rendszerüzemeltető képzés. Programozási és hálózati alapok elsajátítása.",
         skillsTitle: "Technikai stack",
-        skillsCopy: "A portfólió backend irányba pozicionál, de megmutatja, hogy frontend oldalon is van elég alap a teljesebb webes gondolkodáshoz.",
+        skillsCopy: "Bár leginkább a szerveroldali logika és az adatbázisok érdekelnek, frontend oldalon is otthonosan mozgok annyira, hogy egyben lássam a webes folyamatokat.",
         toolsTitle: "Adatbázis & Eszközök",
         strengthsTitle: "Erősségek",
         strength1: "Gyors tanulás",
@@ -939,7 +1097,12 @@
         strength4: "Problémamegoldás",
         strength5: "Alkalmazkodás",
         contactTitle: "Hire me",
-        contactCopy: "Nyitott vagyok gyakornoki és junior pozíciókra, elsősorban Node.js és C# fókuszú backend szerepkörökben. Mivel nemzetközi környezetben is dolgoztam már, az angol nyelvű szakmai kommunikáció (B2) és a csapatmunka nem jelent problémát.",
+        contactCopy: "Szívesen csatlakoznék egy csapathoz gyakornokként vagy junior fejlesztőként, ahol valós projekteken dolgozhatok. Mivel szereztem már tapasztalatot nemzetközi környezetben, az angol nyelvű szakmai kommunikáció (B2) és a csapatmunka gördülékenyen megy.",
+        cvModalTitle: "Önéletrajz letöltése",
+        cvModalText: "Válaszd ki, melyik nyelven (vagy akár mindkettőn) szeretnéd letölteni az önéletrajzomat:",
+        cvModalDownload: "Letöltés",
+        cvLangHu: "Magyar",
+        cvLangEn: "Angol",
         footerPrefix: "©",
         footerText: "HTML, CSS és GitHub Pages segítségével készült."
       },
@@ -953,6 +1116,7 @@
         heroTitle: "Backend-focused developer building <span class='gradient-text'>reliable systems</span> and practical web tools.",
         heroLead: "Hi, I’m Levi, a Computer Engineering student at Óbuda University. As a junior backend developer, I primarily work with modern JavaScript (Node.js) and the .NET C# ecosystem. I enjoy building robust server-side logic and databases to create solutions that actually work in production.",
         viewProjects: "View projects",
+        downloadCv: "Download CV",
         hireMe: "Hire me",
         projectsTitle: "Featured Project",
         projectsCopy: "I showcase my full-stack and backend architectural thinking through this custom-built system.",
@@ -977,7 +1141,7 @@
         career3Title: "BMSZC Bolyai János",
         career3Text: "Software Developer and IT Systems Administrator studies. Gained foundational programming and networking skills.",
         skillsTitle: "Technical stack",
-        skillsCopy: "The portfolio is positioned toward backend development, while also showing enough frontend knowledge for broader web development thinking.",
+        skillsCopy: "Although my main focus is server-side logic and databases, I have enough frontend experience to see the big picture of web development.",
         toolsTitle: "Databases & Tools",
         strengthsTitle: "Strengths",
         strength1: "Fast learner",
@@ -986,7 +1150,12 @@
         strength4: "Problem solver",
         strength5: "Adaptable",
         contactTitle: "Hire me",
-        contactCopy: "I am open to internship and junior developer opportunities, especially backend-focused roles utilizing Node.js or C#. Having worked in an international environment, I am fully comfortable with professional communication in English (B2) and team collaboration.",
+        contactCopy: "I am looking for internship or junior developer opportunities where I can contribute to real-world projects. Having worked in an international environment, I am fully comfortable with professional communication in English (B2) and team collaboration.",
+        cvModalTitle: "Download Resume",
+        cvModalText: "Choose which language(s) you'd like to download the resume in:",
+        cvModalDownload: "Download",
+        cvLangHu: "Hungarian",
+        cvLangEn: "English",
         footerPrefix: "©",
         footerText: "Built with HTML, CSS and GitHub Pages."
       }
@@ -995,6 +1164,73 @@
     const langToggle = document.getElementById("langToggle");
     const savedLanguage = localStorage.getItem("portfolioLanguage") || "hu";
 
+    // CV letöltés logika (Checkbox alapú, többszörös letöltés)
+    const modal = document.getElementById('cvModal');
+    const cvBtns = document.querySelectorAll('.cv-btn');
+    const closeBtn = document.getElementById('closeModalBtn');
+    const downloadBtn = document.getElementById('downloadCvBtn');
+    const checkHu = document.getElementById('checkHu');
+    const checkEn = document.getElementById('checkEn');
+
+    function openModal() {
+      modal.classList.add('active');
+      const currentLang = document.documentElement.lang || 'hu';
+
+      // Alapértelmezetten az oldal nyelvének megfelelő box legyen kipipálva, a másik ne
+      if (currentLang === 'en') {
+        checkEn.checked = true;
+        checkHu.checked = false;
+      } else {
+        checkHu.checked = true;
+        checkEn.checked = false;
+      }
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+    }
+
+    cvBtns.forEach(btn => btn.addEventListener('click', openModal));
+    closeBtn.addEventListener('click', closeModal);
+
+    // Segédfüggvény a fájl letöltésének kikényszerítésére
+    function triggerDownload(url) {
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = url; // Ezzel jelzed a böngészőnek, hogy töltse le a fájlt
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    // Gombra kattintás esetén elindulnak a bepipált letöltések
+    downloadBtn.addEventListener('click', (e) => {
+      e.preventDefault(); // Megakadályozzuk az oldal újratöltését
+
+      if (checkHu.checked) {
+        triggerDownload("Tudos_Levente_CV_HU.pdf");
+      }
+      if (checkEn.checked) {
+        // Egy minimális késleltetés segít, hogy a böngésző biztosan érzékelje a két külön letöltést
+        setTimeout(() => {
+          triggerDownload("Tudos_Levente_CV_EN.pdf");
+        }, 100);
+      }
+
+      // Ha legalább egyet kiválasztott, zárjuk be az ablakot egy kis késleltetéssel
+      if (checkHu.checked || checkEn.checked) {
+        setTimeout(closeModal, 300);
+      }
+    });
+
+    // Ablakon kívüli kattintás bezárja a modalt
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Fordító logika
     function setLanguage(language) {
       document.documentElement.lang = language;
       document.querySelectorAll("[data-i18n]").forEach((element) => {
@@ -1014,6 +1250,25 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
     setLanguage(savedLanguage);
+
+    // SCROLL REVEAL ANIMÁCIÓ (INTERSECTION OBSERVER)
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target); // Csak egyszer animál, ha már megjelent, többet nem veszi le az active-ot
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.15, // Akkor indul az animáció, ha az elem 15%-a már látszódik
+      rootMargin: "0px 0px -20px 0px"
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
   </script>
 </body>
 
