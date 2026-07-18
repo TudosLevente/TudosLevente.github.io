@@ -595,7 +595,6 @@
       box-shadow: 8px 8px 0 rgba(124, 255, 107, 0.13), 0 0 30px rgba(124, 255, 107, 0.13);
     }
 
-    /* Modal Styles */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -702,7 +701,6 @@
       text-transform: uppercase;
     }
 
-    /* --- ANIMÁCIÓS (REVEAL) OSZTÁLYOK --- */
     .reveal {
       opacity: 0;
       transform: translateY(40px);
@@ -1020,8 +1018,19 @@
   </main>
 
   <footer>
-    <div class="container"><span data-i18n="footerPrefix">©</span> <span id="year"></span> Levi. <span
-        data-i18n="footerText">HTML, CSS és GitHub Pages segítségével készült.</span></div>
+    <div class="container">
+      <div style="margin-bottom: 8px;">
+        <span data-i18n="footerPrefix">©</span> <span id="year"></span> Levi. <span data-i18n="copyrightText">Minden jog
+          fenntartva.</span>
+      </div>
+      <div style="margin-bottom: 12px; font-size: 12px;">
+        <a href="terms.html" data-i18n="termsLink" style="text-decoration: underline; opacity: 0.7;">Felhasználási
+          feltételek</a>
+      </div>
+      <div style="opacity: 0.5;">
+        <span data-i18n="footerText">HTML, CSS és GitHub Pages segítségével készült.</span>
+      </div>
+    </div>
   </footer>
 
   <div id="cvModal" class="modal-overlay">
@@ -1104,7 +1113,9 @@
         cvLangHu: "Magyar",
         cvLangEn: "Angol",
         footerPrefix: "©",
-        footerText: "HTML, CSS és GitHub Pages segítségével készült."
+        footerText: "HTML, CSS és GitHub Pages segítségével készült.",
+        copyrightText: "Minden jog fenntartva.",
+        termsLink: "Felhasználási feltételek",
       },
       en: {
         navProjects: "Projects",
@@ -1157,14 +1168,15 @@
         cvLangHu: "Hungarian",
         cvLangEn: "English",
         footerPrefix: "©",
-        footerText: "Built with HTML, CSS and GitHub Pages."
+        footerText: "Built with HTML, CSS and GitHub Pages.",
+        copyrightText: "All rights reserved.",
+        termsLink: "Terms of Use",
       }
     };
 
     const langToggle = document.getElementById("langToggle");
     const savedLanguage = localStorage.getItem("portfolioLanguage") || "hu";
 
-    // CV letöltés logika (Checkbox alapú, többszörös letöltés)
     const modal = document.getElementById('cvModal');
     const cvBtns = document.querySelectorAll('.cv-btn');
     const closeBtn = document.getElementById('closeModalBtn');
@@ -1176,7 +1188,6 @@
       modal.classList.add('active');
       const currentLang = document.documentElement.lang || 'hu';
 
-      // Alapértelmezetten az oldal nyelvének megfelelő box legyen kipipálva, a másik ne
       if (currentLang === 'en') {
         checkEn.checked = true;
         checkHu.checked = false;
@@ -1193,44 +1204,40 @@
     cvBtns.forEach(btn => btn.addEventListener('click', openModal));
     closeBtn.addEventListener('click', closeModal);
 
-    // Segédfüggvény a fájl letöltésének kikényszerítésére
     function triggerDownload(url) {
       const a = document.createElement('a');
       a.href = url;
-      a.download = url; // Ezzel jelzed a böngészőnek, hogy töltse le a fájlt
+      a.download = url;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
     }
 
-    // Gombra kattintás esetén elindulnak a bepipált letöltések
     downloadBtn.addEventListener('click', (e) => {
-      e.preventDefault(); // Megakadályozzuk az oldal újratöltését
+      e.preventDefault();
 
       if (checkHu.checked) {
         triggerDownload("Tudos_Levente_CV_HU.pdf");
       }
       if (checkEn.checked) {
-        // Egy minimális késleltetés segít, hogy a böngésző biztosan érzékelje a két külön letöltést
+        // Slight delay to ensure browser registers multiple downloads
         setTimeout(() => {
           triggerDownload("Tudos_Levente_CV_EN.pdf");
         }, 100);
       }
 
-      // Ha legalább egyet kiválasztott, zárjuk be az ablakot egy kis késleltetéssel
       if (checkHu.checked || checkEn.checked) {
         setTimeout(closeModal, 300);
       }
     });
 
-    // Ablakon kívüli kattintás bezárja a modalt
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         closeModal();
       }
     });
 
-    // Fordító logika
+    // i18n
     function setLanguage(language) {
       document.documentElement.lang = language;
       document.querySelectorAll("[data-i18n]").forEach((element) => {
@@ -1251,19 +1258,19 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     setLanguage(savedLanguage);
 
-    // SCROLL REVEAL ANIMÁCIÓ (INTERSECTION OBSERVER)
+    // Scroll Reveal
     const revealElements = document.querySelectorAll('.reveal');
 
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          observer.unobserve(entry.target); // Csak egyszer animál, ha már megjelent, többet nem veszi le az active-ot
+          observer.unobserve(entry.target);
         }
       });
     }, {
       root: null,
-      threshold: 0.15, // Akkor indul az animáció, ha az elem 15%-a már látszódik
+      threshold: 0.15,
       rootMargin: "0px 0px -20px 0px"
     });
 
